@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>쿠키 클리커 - 달콤한 쿠키 타이쿤</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="game-container">
+    <!-- 좌측: 메인 클리커 섹션 -->
+    <main class="clicker-section">
+      <header class="game-header">
+        <h1 class="logo">🍪 COOKIE TYCOON</h1>
+        <div class="quick-controls">
+          <button id="soundToggleBtn" class="icon-btn" title="사운드 켜기/끄기">🔊</button>
+          <button id="saveBtn" class="icon-btn" title="수동 저장">💾</button>
+          <button id="resetBtn" class="icon-btn danger" title="게임 전체 초기화">🔄</button>
+        </div>
+      </header>
+
+      <!-- 천상 승화 현황 띠 -->
+      <div class="prestige-bar-container">
+        <div class="prestige-info">
+          <span>🌟 천상의 별: <b id="prestigeStarCount">0</b>개 (<span id="prestigeGlobalBonus">+0%</span> 전역 보너스)</span>
+        </div>
+        <button id="prestigeBtn" class="prestige-action-btn disabled">
+          <span class="p-btn-icon">✨</span>
+          <span class="p-btn-text">천상 승화 (<b id="gainStarCount">+0</b>)</span>
+        </button>
+      </div>
+
+      <!-- 쿠키 현황판 -->
+      <div class="stat-board">
+        <div class="coin-display">
+          <span class="coin-icon">🍪</span>
+          <span id="coinCount" class="coin-number">0</span>
+          <span class="currency-label">쿠키</span>
+        </div>
+        <div class="income-stats">
+          <div class="stat-badge">
+            <span class="badge-label">클릭당</span>
+            <span id="clickPowerText" class="badge-val">+1</span>
+          </div>
+          <div class="stat-badge">
+            <span class="badge-label">초당 생산(CPS)</span>
+            <span id="idleIncomeText" class="badge-val">+0 /초</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 메인 쿠키 클릭 영역 -->
+      <div class="coin-interactive-area">
+        <div id="coinBtn" class="cookie-button" role="button" tabindex="0" aria-label="쿠키 클릭">
+          <div class="cookie-face">
+            <div class="cookie-texture"></div>
+            <!-- 초코칩 장식들 -->
+            <span class="choco-chip c1"></span>
+            <span class="choco-chip c2"></span>
+            <span class="choco-chip c3"></span>
+            <span class="choco-chip c4"></span>
+            <span class="choco-chip c5"></span>
+            <span class="choco-chip c6"></span>
+            <span class="choco-chip c7"></span>
+            <div class="cookie-shine"></div>
+          </div>
+        </div>
+        <!-- 팝업 숫자 및 파티클이 표시될 컨테이너 -->
+        <div id="particleContainer" class="particle-container"></div>
+      </div>
+
+      <div class="clicker-footer">
+        <div class="tip-box">
+          💡 <span>마우스 클릭이나 키보드 <b>숫자 패드(NumPad)</b>로 쿠키를 굽고, 쿠키를 많이 모아 <b>천상 승화(🌟)</b>하여 영구 제빵 특성을 해금하세요!</span>
+        </div>
+        <div class="simple-stats">
+          <span>총 클릭 수: <b id="statTotalClicks">0</b>회</span>
+          <span>누적 쿠키: <b id="statTotalCoins">0</b></span>
+          <span>승화 횟수: <b id="statPrestigeCount">0</b>회</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- 우측: 상점 및 업그레이드 섹션 -->
+    <aside class="shop-section">
+      <div class="shop-header">
+        <h2>🛒 쿠키 상점</h2>
+        <div class="shop-tabs">
+          <button class="tab-btn active" data-tab="clickUpgrades">⚡ 베이킹</button>
+          <button class="tab-btn" data-tab="idleUpgrades">🤖 일꾼</button>
+          <button class="tab-btn prestige-tab-btn" data-tab="prestigeUpgrades">🌟 승화 상점</button>
+          <button class="tab-btn" data-tab="achievements">🏆 업적</button>
+        </div>
+      </div>
+
+      <!-- 상점 리스트 컨테이너 -->
+      <div class="shop-content">
+        <!-- 베이킹 강화 -->
+        <div id="clickUpgrades" class="tab-pane active">
+          <div class="shop-list" id="clickShopList">
+            <!-- JS 동적 생성 -->
+          </div>
+        </div>
+
+        <!-- 제빵 일꾼 업그레이드 -->
+        <div id="idleUpgrades" class="tab-pane">
+          <div class="shop-list" id="idleShopList">
+            <!-- JS 동적 생성 -->
+          </div>
+        </div>
+
+        <!-- 승화 상점 (천상의 업그레이드) -->
+        <div id="prestigeUpgrades" class="tab-pane">
+          <div class="prestige-header-banner">
+            <h3>🌟 천상의 베이커리 (승화 상점)</h3>
+            <p>쿠키를 우주급 비법으로 <b>천상 승화</b>하여 얻은 <b>천상의 별</b>로 영구 지속되는 초강력 제빵 특성을 해금하세요!</p>
+            <div class="star-balance">보유 별: <span id="shopStarCount">0</span> 🌟</div>
+          </div>
+          <div class="shop-list" id="prestigeShopList">
+            <!-- JS 동적 생성 -->
+          </div>
+        </div>
+
+        <!-- 업적 탭 -->
+        <div id="achievements" class="tab-pane">
+          <div class="achievements-list" id="achievementList">
+            <!-- JS 동적 생성 -->
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 천상 승화 확인 모달 -->
+  <div id="prestigeModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-icon">🌟</div>
+      <h2>천상으로의 승화 (Ascension)</h2>
+      <p class="modal-desc">
+        지금까지 구운 쿠키의 노하우를 집약하여 천상으로 승화합니다.
+        <br />
+        보유한 일반 쿠키와 상점 아이템은 새로운 판을 위해 리셋되지만,
+        <br />
+        <b id="modalGainStars" class="highlight-star">+0개의 천상의 별</b>을 영구 획득합니다!
+      </p>
+      <div class="modal-benefits">
+        <div>✨ 별 1개당 모든 쿠키 생산량 영구 +1% 패시브 보너스</div>
+        <div>✨ 천상 승화 상점에서 영구적인 제빵 비법 특성 해금</div>
+      </div>
+      <div class="modal-actions">
+        <button id="modalConfirmPrestigeBtn" class="confirm-btn">천상 승화 확정하기 ✨</button>
+        <button id="modalCancelPrestigeBtn" class="cancel-btn">돌아가기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 토스트 알림 메시지 -->
+  <div id="toast" class="toast">저장되었습니다!</div>
+
+  <script src="game.js"></script>
+</body>
+</html>
