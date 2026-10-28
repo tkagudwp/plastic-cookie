@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>쿠키 클리커 - 달콤한 쿠키 타이쿤</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,8 +11,8 @@
 </head>
 <body>
   <div class="game-container">
-    <!-- 좌측: 메인 클리커 섹션 -->
-    <main class="clicker-section">
+    <!-- 좌측: 메인 클리커 섹션 (모바일에서는 화면 탭으로 연타 가능) -->
+    <main class="clicker-section" id="clickerSection">
       <header class="game-header">
         <h1 class="logo">🍪 COOKIE TYCOON</h1>
         <div class="quick-controls">
@@ -52,8 +52,8 @@
         </div>
       </div>
 
-      <!-- 메인 쿠키 클릭 영역 -->
-      <div class="coin-interactive-area">
+      <!-- 메인 쿠키 클릭 영역 (화면 터치/클릭 감지) -->
+      <div id="coinInteractiveArea" class="coin-interactive-area">
         <div id="coinBtn" class="cookie-button" role="button" tabindex="0" aria-label="쿠키 클릭">
           <div class="cookie-face">
             <div class="cookie-texture"></div>
@@ -74,7 +74,7 @@
 
       <div class="clicker-footer">
         <div class="tip-box">
-          💡 <span>마우스 클릭이나 키보드 <b>숫자 패드(NumPad)</b>로 쿠키를 굽고, 쿠키를 많이 모아 <b>천상 승화(🌟)</b>하여 영구 제빵 특성을 해금하세요!</span>
+          💡 <span><b>화면 터치</b>, 마우스 클릭, 키보드 <b>숫자 패드(NumPad)</b>로 쿠키를 굽고, <b>누적 100만 쿠키</b>를 달성해 <b>천상 승화(🌟)</b>하세요!</span>
         </div>
         <div class="simple-stats">
           <span>총 클릭 수: <b id="statTotalClicks">0</b>회</span>
@@ -116,7 +116,7 @@
         <div id="prestigeUpgrades" class="tab-pane">
           <div class="prestige-header-banner">
             <h3>🌟 천상의 베이커리 (승화 상점)</h3>
-            <p>쿠키를 우주급 비법으로 <b>천상 승화</b>하여 얻은 <b>천상의 별</b>로 영구 지속되는 초강력 제빵 특성을 해금하세요!</p>
+            <p>누적 100만 쿠키를 달성해 <b>천상 승화</b>하고, <b>천상의 별</b>로 영구 지속되는 초강력 제빵 특성을 해금하세요!</p>
             <div class="star-balance">보유 별: <span id="shopStarCount">0</span> 🌟</div>
           </div>
           <div class="shop-list" id="prestigeShopList">
@@ -149,6 +149,7 @@
       <div class="modal-benefits">
         <div>✨ 별 1개당 모든 쿠키 생산량 영구 +1% 패시브 보너스</div>
         <div>✨ 천상 승화 상점에서 영구적인 제빵 비법 특성 해금</div>
+        <div>✨ 승화 최소 기준: 누적 1,000,000 (100만) 쿠키 이상</div>
       </div>
       <div class="modal-actions">
         <button id="modalConfirmPrestigeBtn" class="confirm-btn">천상 승화 확정하기 ✨</button>

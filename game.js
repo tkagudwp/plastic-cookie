@@ -1,10 +1,12 @@
 /**
  * 쿠키 타이쿤 (Cookie Tycoon) - 쿠키 클리커 & 천상 승화(Ascension) 시스템
+ * 17단계 베이킹 도구 & 17단계 제빵 일꾼 대규모 확장판
  */
 
-// --- 1. 일반 상점 아이템 설정 ---
-// 후반 티어일수록 기본 가격과 costMultiplier가 대폭 높아집니다.
+// --- 1. 일반 상점 아이템 설정 (각 17단계) ---
+// 후반 티어로 갈수록 기본 비용과 비용 증가율(costMultiplier)이 급격히 치솟습니다.
 const CLICK_UPGRADES = [
+  // [초반 1~4단계]
   {
     id: 'wooden_spatula',
     name: '낡은 나무 주걱',
@@ -45,6 +47,7 @@ const CLICK_UPGRADES = [
     tier: 4,
     icon: '🧤',
   },
+  // [중반 5~7단계]
   {
     id: 'laser_oven_pointer',
     name: '레이저 베이킹 포인터',
@@ -68,16 +71,118 @@ const CLICK_UPGRADES = [
   {
     id: 'quantum_spatula',
     name: '양자 차원 뒤집개',
-    desc: '평행세계의 모든 쿠키를 한곳으로 끌어모으는 궁극의 조리도구입니다.',
+    desc: '평행세계의 모든 쿠키를 한곳으로 끌어모으는 조리도구입니다.',
     baseCost: 1200000,
     power: 20000,
     costMultiplier: 1.40,
     tier: 7,
     icon: '🌀',
   },
+  // [후반 확장 8~17단계 (신규 10단계)]
+  {
+    id: 'antimatter_injector',
+    name: '반물질 초콜릿 인젝터',
+    desc: '반물질 에너지를 주입해 클릭할 때마다 폭발적인 에너지를 냅니다.',
+    baseCost: 8500000, // 850만
+    power: 120000,
+    costMultiplier: 1.44,
+    tier: 8,
+    icon: '🧪',
+  },
+  {
+    id: 'gravity_dough_press',
+    name: '중력파 반죽 프레스',
+    desc: '블랙홀의 초중력으로 우주에서 가장 밀도 높은 쿠키를 압축합니다.',
+    baseCost: 65000000, // 6,500만
+    power: 850000,
+    costMultiplier: 1.48,
+    tier: 9,
+    icon: '🪐',
+  },
+  {
+    id: 'higgs_glaze_brush',
+    name: '힉스 보손 글레이징 붓',
+    desc: '물질에 질량을 부여하는 신의 입자로 황금빛 시럽을 코팅합니다.',
+    baseCost: 500000000, // 5억
+    power: 6000000,
+    costMultiplier: 1.51,
+    tier: 10,
+    icon: '🖌️',
+  },
+  {
+    id: 'superstring_whisk',
+    name: '초끈이론 거품기',
+    desc: '11차원 미세 진동으로 시공간의 거품을 일으켜 쿠키를 연성합니다.',
+    baseCost: 4000000000, // 40억
+    power: 45000000,
+    costMultiplier: 1.54,
+    tier: 11,
+    icon: '🎻',
+  },
+  {
+    id: 'singularity_ladle',
+    name: '사건의 지평선 국자',
+    desc: '은하 중심 블랙홀 너머에서 쏟아지는 원초적 반죽을 퍼 담습니다.',
+    baseCost: 35000000000, // 350억
+    power: 350000000,
+    costMultiplier: 1.57,
+    tier: 12,
+    icon: '🕳️',
+  },
+  {
+    id: 'multiverse_projector',
+    name: '다중우주 쿠키 프로젝터',
+    desc: '무한한 평행우주의 쿠키들을 현재의 현실로 실체화합니다.',
+    baseCost: 300000000000, // 3,000억
+    power: 2800000000,
+    costMultiplier: 1.60,
+    tier: 13,
+    icon: '🔮',
+  },
+  {
+    id: 'dark_matter_gauntlet',
+    name: '암흑 물질 건틀릿',
+    desc: '우주 질량의 85%를 차지하는 암흑 물질을 반죽에 직접 주무릅니다.',
+    baseCost: 2800000000000, // 2.8조
+    power: 24000000000,
+    costMultiplier: 1.63,
+    tier: 14,
+    icon: '🧤',
+  },
+  {
+    id: 'big_bang_cutter',
+    name: '빅뱅 시뮬레이션 커터',
+    desc: '우주 탄생의 대폭발을 재현하여 순간적으로 무한한 쿠키 결정을 찍어냅니다.',
+    baseCost: 28000000000000, // 28조
+    power: 220000000000,
+    costMultiplier: 1.66,
+    tier: 15,
+    icon: '💥',
+  },
+  {
+    id: 'creation_god_tweezer',
+    name: '창조신의 오븐 핀셋',
+    desc: '별자리들을 집어 올려 하나의 완벽한 초코칩으로 배치합니다.',
+    baseCost: 300000000000000, // 300조
+    power: 2000000000000,
+    costMultiplier: 1.70,
+    tier: 16,
+    icon: '✨',
+  },
+  {
+    id: 'infinity_pastry_wand',
+    name: '절대 특이점의 제과 봉',
+    desc: '모든 차원과 시공간을 초월해 손짓 한 번으로 온 우주를 쿠키로 채웁니다.',
+    baseCost: 3500000000000000, // 3,500조
+    power: 20000000000000,
+    costMultiplier: 1.75,
+    tier: 17,
+    icon: '👑',
+  },
 ];
 
 const IDLE_UPGRADES = [
+  // [초반 1~4단계]
   {
     id: 'auto_baker_bot',
     name: '꼬마 제빵 봇',
@@ -118,6 +223,7 @@ const IDLE_UPGRADES = [
     tier: 4,
     icon: '🏭',
   },
+  // [중반 5~7단계]
   {
     id: 'ai_recipe_lab',
     name: 'AI 레시피 연구소',
@@ -148,17 +254,118 @@ const IDLE_UPGRADES = [
     tier: 7,
     icon: '⏳',
   },
+  // [후반 확장 8~17단계 (신규 10단계)]
+  {
+    id: 'cookie_alchemy_forge',
+    name: '쿠키 연금술 제련소',
+    desc: '납과 흙을 달콤한 초코 쿠키로 변환하는 고대 비전의 제련소입니다.',
+    baseCost: 12000000, // 1,200만
+    power: 100000,
+    costMultiplier: 1.44,
+    tier: 8,
+    icon: '🏺',
+  },
+  {
+    id: 'interstellar_drone_fleet',
+    name: '성간 쿠키 드론 함대',
+    desc: '수억 대의 자율 비행 드론이 은하계 전역을 누비며 쿠키를 수확합니다.',
+    baseCost: 90000000, // 9,000만
+    power: 750000,
+    costMultiplier: 1.48,
+    tier: 9,
+    icon: '🛸',
+  },
+  {
+    id: 'dyson_sphere_bakery',
+    name: '다이슨 스피어 베이킹 쉘',
+    desc: '항성 하나의 핵융합 에너지를 통째로 둘러싼 거대 항성급 오븐입니다.',
+    baseCost: 750000000, // 7.5억
+    power: 5500000,
+    costMultiplier: 1.51,
+    tier: 10,
+    icon: '☀️',
+  },
+  {
+    id: 'quantum_cloner',
+    name: '양자 얽힘 쿠키 복제기',
+    desc: '쿠키 하나가 구워지면 우주 반대편에서 즉시 쌍둥이 쿠키가 생성됩니다.',
+    baseCost: 6500000000, // 65억
+    power: 42000000,
+    costMultiplier: 1.54,
+    tier: 11,
+    icon: '⚛️',
+  },
+  {
+    id: 'dimension_portal_hub',
+    name: '차원 간 포털 허브',
+    desc: '쿠키로 이루어진 이계의 차원과 영구 통로를 연결해 쉴 새 없이 퍼옵니다.',
+    baseCost: 55000000000, // 550억
+    power: 320000000,
+    costMultiplier: 1.57,
+    tier: 12,
+    icon: '🚪',
+  },
+  {
+    id: 'pulsar_energy_tower',
+    name: '펄서 에너지 가속 타워',
+    desc: '중성자별의 강력한 자기장 펄스를 에너지원으로 쿠키를 초고속 생산합니다.',
+    baseCost: 480000000000, // 4,800억
+    power: 2500000000,
+    costMultiplier: 1.60,
+    tier: 13,
+    icon: '🗼',
+  },
+  {
+    id: 'hyper_ai_core',
+    name: '우주 초지능 쿠키 코어',
+    desc: '우주 전체의 엔트로피를 역전시켜 원자 단위로 쿠키를 무한 합성합니다.',
+    baseCost: 4500000000000, // 4.5조
+    power: 21000000000,
+    costMultiplier: 1.63,
+    tier: 14,
+    icon: '💻',
+  },
+  {
+    id: 'galactic_cluster_farm',
+    name: '은하 성단 쿠키 농장',
+    desc: '수백 개의 은하가 거대한 반죽 밭이 되어 자동으로 회전하며 생산합니다.',
+    baseCost: 45000000000000, // 45조
+    power: 190000000000,
+    costMultiplier: 1.66,
+    tier: 15,
+    icon: '🌌',
+  },
+  {
+    id: 'spacetime_matrix_nexus',
+    name: '시공간 매트릭스 넥서스',
+    desc: '시간선 전체를 장악하여 태초부터 종말까지의 모든 순간에 쿠키를 굽습니다.',
+    baseCost: 480000000000000, // 480조
+    power: 1800000000000,
+    costMultiplier: 1.70,
+    tier: 16,
+    icon: '💠',
+  },
+  {
+    id: 'omnipresent_cookie_temple',
+    name: '전지전능 쿠키 신전',
+    desc: '우주 만물이 곧 쿠키이며, 존재하는 모든 호흡이 쿠키를 찬양하며 생성됩니다.',
+    baseCost: 5500000000000000, // 5,500조
+    power: 18000000000000,
+    costMultiplier: 1.75,
+    tier: 17,
+    icon: '🏛️',
+  },
 ];
 
-// --- 2. 천상 승화 상점 아이템 목록 ---
+// --- 2. 천상 승화 상점 아이템 목록 (확장) ---
 const PRESTIGE_UPGRADES = [
   {
     id: 'prestige_click',
     name: '천상의 손길',
     desc: '클릭당 쿠키 생산량이 레벨당 영구 +50% 증가합니다.',
     baseCost: 1,
-    maxLevel: 20,
-    costMultiplier: 2,
+    maxLevel: 50,
+    costMultiplier: 1.8,
     power: 0.5,
     icon: '✨',
   },
@@ -167,8 +374,8 @@ const PRESTIGE_UPGRADES = [
     name: '시간 왜곡 가속기',
     desc: '모든 제빵 일꾼의 생산 속도가 레벨당 영구 +30% 증가합니다.',
     baseCost: 2,
-    maxLevel: 20,
-    costMultiplier: 2,
+    maxLevel: 50,
+    costMultiplier: 1.8,
     power: 0.3,
     icon: '⚡',
   },
@@ -187,7 +394,7 @@ const PRESTIGE_UPGRADES = [
     name: '골든 스타터 팩',
     desc: '천상 승화 직후 시작 쿠키가 +10,000개씩 영구 지급됩니다.',
     baseCost: 1,
-    maxLevel: 10,
+    maxLevel: 20,
     costMultiplier: 2,
     power: 10000,
     icon: '🎁',
@@ -197,8 +404,8 @@ const PRESTIGE_UPGRADES = [
     name: '행운의 크런치 (크리티컬)',
     desc: '클릭 시 5% 확률로 10배 크리티컬 대박 쿠키가 터집니다.',
     baseCost: 4,
-    maxLevel: 10,
-    costMultiplier: 2.5,
+    maxLevel: 15,
+    costMultiplier: 2.2,
     power: 0.05,
     icon: '💥',
   },
@@ -207,14 +414,14 @@ const PRESTIGE_UPGRADES = [
     name: '영원의 오븐',
     desc: '오프라인 방치 수익률이 레벨당 50%씩 추가 증가합니다.',
     baseCost: 2,
-    maxLevel: 5,
-    costMultiplier: 2.5,
+    maxLevel: 10,
+    costMultiplier: 2.2,
     power: 0.5,
     icon: '🌌',
   },
 ];
 
-// --- 3. 업적 목록 ---
+// --- 3. 업적 목록 (후반부 대규모 업적 추가) ---
 const ACHIEVEMENTS = [
   {
     id: 'first_click',
@@ -238,6 +445,13 @@ const ACHIEVEMENTS = [
     check: (s) => s.totalClicks >= 1000,
   },
   {
+    id: 'click_5000',
+    name: '신들린 제빵사',
+    desc: '쿠키를 총 5,000회 클릭/타이핑하세요.',
+    icon: '🌪️',
+    check: (s) => s.totalClicks >= 5000,
+  },
+  {
     id: 'coin_1000',
     name: '달콤한 저축',
     desc: '누적 1,000 쿠키를 달성하세요.',
@@ -252,11 +466,42 @@ const ACHIEVEMENTS = [
     check: (s) => s.totalCoinsEarned >= 100000,
   },
   {
+    id: 'coin_100m',
+    name: '억만장자의 반죽',
+    desc: '누적 1억(100,000,000) 쿠키를 달성하세요.',
+    icon: '💰',
+    check: (s) => s.totalCoinsEarned >= 100000000,
+  },
+  {
+    id: 'coin_1t',
+    name: '조 단위의 제과 제국',
+    desc: '누적 1조(1,000,000,000,000) 쿠키를 달성하세요.',
+    icon: '🏰',
+    check: (s) => s.totalCoinsEarned >= 1000000000000,
+  },
+  {
+    id: 'coin_1000t',
+    name: '경 단위의 우주 베이커리',
+    desc: '누적 1,000조 쿠키를 달성하세요.',
+    icon: '🪐',
+    check: (s) => s.totalCoinsEarned >= 1000000000000000,
+  },
+  {
     id: 'first_upgrade',
     name: '첫 주방 도구 구매',
     desc: '상점에서 첫 번째 업그레이드를 구매하세요.',
     icon: '🛍️',
     check: (s) => Object.values(s.inventory).some((cnt) => cnt > 0),
+  },
+  {
+    id: 'tier_10_collector',
+    name: '신의 영역 진입',
+    desc: '10티어 이상의 고급 제빵 장비를 구매하세요.',
+    icon: '🖌️',
+    check: (s) => {
+      const highTiers = ['higgs_glaze_brush', 'dyson_sphere_bakery'];
+      return highTiers.some((id) => (s.inventory[id] || 0) > 0);
+    },
   },
   {
     id: 'first_prestige',
@@ -273,16 +518,37 @@ const ACHIEVEMENTS = [
     check: (s) => s.prestigeLifetimeStars >= 10,
   },
   {
+    id: 'prestige_100_stars',
+    name: '천상의 지배자',
+    desc: '천상의 별을 누적 100개 이상 모으세요.',
+    icon: '💫',
+    check: (s) => s.prestigeLifetimeStars >= 100,
+  },
+  {
     id: 'idle_master',
     name: '쿠키 자동화 제국',
     desc: '초당 쿠키 생산량(CPS)이 1,000 이상에 도달하세요.',
     icon: '🏭',
     check: (s) => s.idleIncome >= 1000,
   },
+  {
+    id: 'cps_1m',
+    name: '초당 백만 쿠키',
+    desc: '초당 쿠키 생산량(CPS)이 1,000,000 이상에 도달하세요.',
+    icon: '🚀',
+    check: (s) => s.idleIncome >= 1000000,
+  },
+  {
+    id: 'cps_1b',
+    name: '초당 십억 쿠키',
+    desc: '초당 쿠키 생산량(CPS)이 1,000,000,000 이상에 도달하세요.',
+    icon: '🛸',
+    check: (s) => s.idleIncome >= 1000000000,
+  },
 ];
 
 // --- 게임 상태 관리 ---
-const STORAGE_KEY = 'cookie_tycoon_save_v4';
+const STORAGE_KEY = 'cookie_tycoon_save_v5';
 
 const defaultState = {
   coins: 0,
@@ -333,7 +599,6 @@ class SoundManager {
       const now = this.ctx.currentTime;
 
       if (isCrit) {
-        // 크리티컬 대박 소리
         osc.frequency.setValueAtTime(600, now);
         osc.frequency.exponentialRampToValueAtTime(1800, now + 0.15);
         gain.gain.setValueAtTime(0.25, now);
@@ -343,7 +608,6 @@ class SoundManager {
         osc.start(now);
         osc.stop(now + 0.2);
       } else {
-        // 일반 바삭한 클릭 소리
         osc.frequency.setValueAtTime(850, now);
         osc.frequency.exponentialRampToValueAtTime(1300, now + 0.08);
         gain.gain.setValueAtTime(0.18, now);
@@ -389,7 +653,6 @@ class SoundManager {
 
     try {
       const now = this.ctx.currentTime;
-      // 장엄한 천상 승화 팡파레 (4화음 아르페지오)
       [440, 554.37, 659.25, 880, 1108.73].forEach((freq, idx) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
@@ -434,12 +697,12 @@ class SoundManager {
 
 const sounds = new SoundManager();
 
-// --- 4. 유틸리티 함수 ---
+// --- 4. 유틸리티 함수 (큰 단위 지원 확장) ---
 function formatNumber(num) {
   if (num < 1000) return Math.floor(num).toLocaleString('ko-KR');
   if (num < 10000) return Math.floor(num).toLocaleString('ko-KR');
   
-  const units = ['', '만', '억', '조', '경', '해', '자'];
+  const units = ['', '만', '억', '조', '경', '해', '자', '양', '구', '간', '정', '재', '극'];
   let unitIndex = 0;
   let temp = num;
 
@@ -452,7 +715,7 @@ function formatNumber(num) {
 }
 
 // 일반 상점 아이템 가격 계산:
-// 1) 기본 가격 * (비용배수 + 수량/20 * 0.01)^수량 (후반 및 고레벨일수록 기하급수적으로 폭증)
+// 1) 기본 가격 * (비용배수 + 수량/20 * 0.01)^수량
 // 2) 천상 승화 상점의 원가 절감서 레벨에 따라 영구 할인 적용
 function getItemCost(item, count) {
   const discountLv = state.prestigeInventory['prestige_discount'] || 0;
@@ -470,10 +733,12 @@ function getPrestigeItemCost(item, count) {
 }
 
 // 천상 승화 시 획득 가능한 천상의 별 계산:
-// 누적 획득 쿠키 50,000부터 별 획득 가능
+// 천상 승화 최소 기준: 누적 획득 1,000,000 (100만) 쿠키 이상
+const PRESTIGE_MIN_COOKIES = 1000000;
+
 function calculateTotalStarsForCookies(totalCoins) {
-  if (totalCoins < 50000) return 0;
-  return Math.floor(Math.pow(totalCoins / 50000, 0.55));
+  if (totalCoins < PRESTIGE_MIN_COOKIES) return 0;
+  return Math.floor(Math.pow(totalCoins / PRESTIGE_MIN_COOKIES, 0.55));
 }
 
 function getAvailablePrestigeStars() {
@@ -481,7 +746,7 @@ function getAvailablePrestigeStars() {
   return Math.max(0, totalStars - state.prestigeLifetimeStars);
 }
 
-// 전체 능력치 재계산 (천상 승화 패시브 및 영구 특성 반영)
+// 전체 능력치 재계산
 function recalculateStats() {
   let baseClick = 1;
   let baseIdle = 0;
@@ -523,6 +788,7 @@ const elPrestigeGlobalBonus = document.getElementById('prestigeGlobalBonus');
 const elGainStarCount = document.getElementById('gainStarCount');
 const elPrestigeBtn = document.getElementById('prestigeBtn');
 const elCoinBtn = document.getElementById('coinBtn');
+const elCoinInteractiveArea = document.getElementById('coinInteractiveArea');
 const elParticleContainer = document.getElementById('particleContainer');
 const elSoundToggleBtn = document.getElementById('soundToggleBtn');
 const elSaveBtn = document.getElementById('saveBtn');
@@ -567,7 +833,7 @@ function updateUI() {
 
   // 일반 상점 아이템 구매 가능 여부 갱신
   document.querySelectorAll('.shop-item:not(.prestige-item)').forEach((itemEl) => {
-    const cost = parseInt(itemEl.dataset.cost, 10);
+    const cost = parseFloat(itemEl.dataset.cost);
     if (state.coins >= cost) {
       itemEl.classList.remove('disabled');
     } else {
@@ -577,7 +843,7 @@ function updateUI() {
 
   // 승화 상점 아이템 구매 가능 여부 갱신
   document.querySelectorAll('.shop-item.prestige-item').forEach((itemEl) => {
-    const cost = parseInt(itemEl.dataset.cost, 10);
+    const cost = parseFloat(itemEl.dataset.cost);
     const isMax = itemEl.dataset.isMax === 'true';
     if (!isMax && state.prestigeStars >= cost) {
       itemEl.classList.remove('disabled');
@@ -605,7 +871,7 @@ function renderShop() {
       <div class="item-details">
         <div class="item-top-row">
           <span class="item-name">${item.name}</span>
-          <span class="item-level">Lv. ${count}</span>
+          <span class="item-level">T${item.tier} · Lv. ${count}</span>
         </div>
         <div class="item-desc">${item.desc}</div>
         <div class="item-effect">클릭당 +${formatNumber(item.power)} 쿠키 (비용증가율 ${(item.costMultiplier * 100 - 100).toFixed(0)}%)</div>
@@ -636,7 +902,7 @@ function renderShop() {
       <div class="item-details">
         <div class="item-top-row">
           <span class="item-name">${item.name}</span>
-          <span class="item-level">Lv. ${count}</span>
+          <span class="item-level">T${item.tier} · Lv. ${count}</span>
         </div>
         <div class="item-desc">${item.desc}</div>
         <div class="item-effect">초당 +${formatNumber(item.power)} 쿠키 (비용증가율 ${(item.costMultiplier * 100 - 100).toFixed(0)}%)</div>
@@ -755,8 +1021,7 @@ function buyPrestigeItem(item) {
 function openPrestigeModal() {
   const earnableStars = getAvailablePrestigeStars();
   if (earnableStars <= 0) {
-    const neededCoins = 50000;
-    showToast(`천상 승화하려면 누적 ${formatNumber(neededCoins)} 쿠키 이상이 필요합니다!`);
+    showToast(`천상 승화하려면 누적 ${formatNumber(PRESTIGE_MIN_COOKIES)} 쿠키 이상이 필요합니다!`);
     return;
   }
 
@@ -842,7 +1107,29 @@ function triggerCookieBake(clientX = null, clientY = null) {
   checkAchievements();
 }
 
-function handleCoinClick(e) {
+let lastTouchTime = 0;
+
+// 모바일 멀티 터치 지원 (두 손가락, 세 손가락 등 동시 탭 가능)
+function handleAreaTouch(e) {
+  if (elPrestigeModal.classList.contains('show')) return;
+  if (e.target.closest('.quick-controls') || e.target.closest('.prestige-bar-container')) {
+    return;
+  }
+
+  e.preventDefault(); // 더블탭 확대 방지 및 중복 클릭 이벤트 차단
+  lastTouchTime = Date.now();
+
+  for (let i = 0; i < e.changedTouches.length; i++) {
+    const touch = e.changedTouches[i];
+    triggerCookieBake(touch.clientX, touch.clientY);
+  }
+}
+
+// PC 마우스 클릭 (모바일 터치 후 중복 실행 방지)
+function handleAreaClick(e) {
+  if (Date.now() - lastTouchTime < 450) {
+    return;
+  }
   triggerCookieBake(e.clientX, e.clientY);
 }
 
@@ -980,7 +1267,6 @@ function setupTabs() {
 }
 
 // --- 키보드 이벤트: 숫자 패드 꾹 누름(반복) 방지 및 단발 타건 시스템 ---
-// 키를 꾹 누르고 있어도 1회만 적용되고, 손을 뗐다가 다시 눌렀을 때만 1회씩 인식
 const activeKeys = new Set();
 
 function setupKeyboardControls() {
@@ -991,7 +1277,6 @@ function setupKeyboardControls() {
     if (isNumpad || isSpace) {
       e.preventDefault();
 
-      // 꾹 누르고 있을 때의 자동 반복(repeat) 및 중복 입력 철저 차단
       if (e.repeat || activeKeys.has(e.code)) {
         return;
       }
@@ -1014,7 +1299,6 @@ function setupKeyboardControls() {
     }
   });
 
-  // 창 포커스가 벗어났을 때 눌려있는 키 상태 클리어
   window.addEventListener('blur', () => {
     activeKeys.clear();
     elCoinBtn.classList.remove('pressed');
@@ -1044,8 +1328,13 @@ function init() {
   setupTabs();
   setupKeyboardControls();
 
-  // 쿠키 마우스 클릭 이벤트
-  elCoinBtn.addEventListener('click', handleCoinClick);
+  // 화면 터치(모바일) 및 마우스 클릭(PC) 이벤트
+  if (elCoinInteractiveArea) {
+    elCoinInteractiveArea.addEventListener('touchstart', handleAreaTouch, { passive: false });
+    elCoinInteractiveArea.addEventListener('click', handleAreaClick);
+  } else {
+    elCoinBtn.addEventListener('click', handleAreaClick);
+  }
 
   // 천상 승화 관련 버튼
   elPrestigeBtn.addEventListener('click', openPrestigeModal);
